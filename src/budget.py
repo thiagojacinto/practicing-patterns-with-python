@@ -19,12 +19,16 @@ class Budget(object):
     def get_itens(self):
         """Returns the itens included in the budget"""
         return tuple(self.__itens)
+    
+    def add_item(self, item) -> None:
+        """Adds a new item to the budget"""
+        self.__itens.append(item)
 
 class Item():
 
     def __init__(self, name, value) -> None:
         self.__name = name
-        self.__value == value
+        self.__value = value
 
     @property
     def name(self):
