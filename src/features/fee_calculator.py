@@ -34,3 +34,18 @@ if __name__ == '__main__':
     print(result_three)
     result_four = fee_calc.calculate(my_budget, fee_four.calculate)
     print(result_four)
+
+    # now, we want to compound some taxes to calculate
+    compound_fee_three_and_four = NewFeeThree(my_budget, NewFeeFour(my_budget))
+    result_compound = fee_calc.calculate(my_budget, compound_fee_three_and_four.calculate)
+    print(result_compound)
+
+    ultra_fee_compound = NewFeeFour(
+        my_budget,
+        NewFeeThree(my_budget, 
+            NewFeeFour(my_budget, 
+                NewFeeThree(my_budget, compound_fee_three_and_four)
+                )
+            )
+        )
+    print(fee_calc.calculate(my_budget, ultra_fee_compound.calculate))
