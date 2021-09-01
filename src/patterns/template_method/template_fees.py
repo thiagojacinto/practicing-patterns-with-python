@@ -2,11 +2,13 @@
 # -*- coding: UTF-8 -*-
 from abc import ABCMeta, abstractmethod
 from src.patterns.decorator import compound_fee
+from src.patterns.decorator.add_three import additional_three
 
 # using a template class
 class FeeTemplate(compound_fee.TaxCompound, metaclass = ABCMeta):
     """Basic logic container for a new Fee"""
-
+    
+    @additional_three
     def calculate(self, value):
         """Contains the basic if-this-else-that logic to apply a fee calculation"""
         if self.condition_to_use_max_tax(value):
