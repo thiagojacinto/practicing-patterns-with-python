@@ -1,17 +1,13 @@
 #!bin/python3
 # -*- coding: UTF-8 -*-
+from src.patterns.state.budget_status import Status_pending
 
 class Budget(object):
-
-    PENDING     = 1
-    APPROVED    = 2
-    REPROVED    = 3
-    CLOSED      = 4
   
     def __init__(self) -> None:
         # self.__value = value
         self.__itens = []
-        self.current_status = 1
+        self.current_status = Status_pending()
         self.__extra_discount = 0.0
 
     @property
@@ -33,14 +29,32 @@ class Budget(object):
 
     def apply_extra_discount(self) -> None:
         """Applies a discount rate that varies with the current budget status"""
-        if (self.current_status == Budget.PENDING):
-            self.__extra_discount += self.value * 0.05
-        elif (self.current_status == Budget.APPROVED):
-            self.__extra_discount += self.value * 0.02
-        elif (self.current_status == Budget.REPROVED):
-            raise Exception('Reproved Budget do not receive extra discount.')
-        elif (self.current_status == Budget.CLOSED):
-            raise Exception('Closed Budget do not receive extra discount.')
+        # if (self.current_status == Budget.PENDING):
+        #     self.__extra_discount += self.value * 0.05
+        # elif (self.current_status == Budget.APPROVED):
+        #     self.__extra_discount += self.value * 0.02
+        # elif (self.current_status == Budget.REPROVED):
+        #     raise Exception('Reproved Budget do not receive extra discount.')
+        # elif (self.current_status == Budget.CLOSED):
+        #     raise Exception('Closed Budget do not receive extra discount.')
+
+        self.current_status.apply_extra_discount(self)
+
+    def add_extra_discount(self, discount) -> None:
+        """Adds the input discount to the extra_discount property"""
+        self.__extra_discount += discount
+
+    def approve(self) -> None:
+        """Set the status to APPROVED"""
+        self.current_status.approve(self)
+
+    def reprove(self) -> None:
+        """Set the status to REPPROVED"""
+        self.current_status.repprove(self)
+
+    def close(self) -> None:
+        """Set the status to CLOSED"""
+        self.current_status.close(self)
 
 class Item():
 

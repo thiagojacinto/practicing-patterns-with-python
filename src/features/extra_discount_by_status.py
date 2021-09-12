@@ -12,18 +12,21 @@ if __name__ == '__main__':
     my_other_budget.apply_extra_discount()
     print('Value with STATUS PENDING extra discount is: {0}'.format(my_other_budget.value))
 
-    my_other_budget.current_status = Budget.APPROVED
+    # my_other_budget.current_status = Budget.APPROVED
+    my_other_budget.approve()
     my_other_budget.apply_extra_discount()
     print('Value with STATUS APPROVED extra discount is: {0}'.format(my_other_budget.value))
 
     try:
-        my_other_budget.current_status = Budget.REPROVED
+        # my_other_budget.current_status = Budget.REPROVED
+        my_other_budget.reprove()
         my_other_budget.apply_extra_discount()
     except Exception:
         logging.exception('Exception raised')
 
     try:
-        my_other_budget.current_status = Budget.CLOSED
+        # my_other_budget.current_status = Budget.CLOSED
+        my_other_budget.close()
         my_other_budget.apply_extra_discount()
     except Exception:
         logging.exception('Exception raised')
