@@ -26,6 +26,9 @@ class Budget_status():
 class Status_pending(Budget_status):
     """Budget status as PENDING"""
 
+    def __str__(self) -> str:
+        return "PENDING"
+
     def apply_extra_discount(self, budget):
         budget.add_extra_discount(budget.value * 0.05)
 
@@ -41,6 +44,9 @@ class Status_pending(Budget_status):
 
 class Status_approved(Budget_status):
     """Budget status as APPROVED"""
+
+    def __str__(self) -> str:
+        return "APPROVED"
 
     def apply_extra_discount(self, budget):
         return budget.add_extra_discount(budget.value * 0.02)
@@ -59,6 +65,9 @@ class Status_approved(Budget_status):
 class Status_repproved(Budget_status):
     """Budget status as REPPROVED"""
 
+    def __str__(self) -> str:
+        return "REPROVED"
+
     def apply_extra_discount(self, budget):
         raise Exception('Reproved Budget do not receive extra discount.')
 
@@ -75,6 +84,9 @@ class Status_repproved(Budget_status):
 
 class Status_closed(Budget_status):
     """Budget status as closed"""
+
+    def __str__(self) -> str:
+        return "CLOSED"
 
     def apply_extra_discount(self, budget):
         raise Exception('Closed Budget do not receive extra discount.')
