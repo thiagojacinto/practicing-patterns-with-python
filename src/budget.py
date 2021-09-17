@@ -73,12 +73,16 @@ class Item():
 class Report():
     """Explore the budget and creates a report with its items"""
 
-    def __init__(self, budget: Budget) -> None:
+    def __init__(self, budget: Budget, observers = []) -> None:
         self.__budget = budget
+        self.observers = observers
 
-        self.mail_to_ceo()
-        self.save_content_into_db()
-        self.send_to_printer()
+        for observer in observers:
+            observer(self)
+
+        # self.mail_to_ceo()
+        # self.save_content_into_db()
+        # self.send_to_printer()
     
     def __str__(self) -> str:
         list_items = []
@@ -88,20 +92,20 @@ class Report():
 
         return "".join(list_items)
 
-    def send_to_printer(self):
-        """Send content to print"""
-        print('\n>>>>> SENDING THIS CONTENT TO THE PRINTER >>>>>\n')
-        print(self)
-        print('\n<<<<< FINISH PRINTING <<<<<\n')
+    # def send_to_printer(self):
+    #     """Send content to print"""
+    #     print('\n>>>>> SENDING THIS CONTENT TO THE PRINTER >>>>>\n')
+    #     print(self)
+    #     print('\n<<<<< FINISH PRINTING <<<<<\n')
 
-    def save_content_into_db(self):
-        """Save content into DB"""
-        print('\n>>>>> SAVING THIS CONTENT INTO DB >>>>>\n')
-        print(self)
-        print('\n<<<<< FINISH SAVING <<<<<\n')
+    # def save_content_into_db(self):
+    #     """Save content into DB"""
+    #     print('\n>>>>> SAVING THIS CONTENT INTO DB >>>>>\n')
+    #     print(self)
+    #     print('\n<<<<< FINISH SAVING <<<<<\n')
 
-    def mail_to_ceo(self):
-        """Send this content to CEO e-mail"""
-        print('\n>>>>> SENDING TO CEO\'s E-MAIL >>>>>\n')
-        print(self)
-        print('\n<<<<< E-MAIL SENT <<<<<\n')
+    # def mail_to_ceo(self):
+    #     """Send this content to CEO e-mail"""
+    #     print('\n>>>>> SENDING TO CEO\'s E-MAIL >>>>>\n')
+    #     print(self)
+    #     print('\n<<<<< E-MAIL SENT <<<<<\n')
