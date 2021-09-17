@@ -78,6 +78,7 @@ class Report():
     
     def __str__(self) -> str:
         list_items = []
+        list_items.append(" ---- Budget status: {} ----\n".format(self.__budget.current_status))
         for item in self.__budget.get_itens():
             list_items.append("Item = {}, value = $ {} \n".format(item.name, item.value))
 
