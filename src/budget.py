@@ -69,3 +69,16 @@ class Item():
     @property
     def value(self):
         return self.__value
+
+class Report():
+    """Explore the budget and creates a report with its items"""
+
+    def __init__(self, budget: Budget) -> None:
+        self.__budget = budget
+    
+    def __str__(self) -> str:
+        list_items = []
+        for item in self.__budget.get_itens():
+            list_items.append("Item = {}, value = $ {} \n".format(item.name, item.value))
+
+        return "".join(list_items)
